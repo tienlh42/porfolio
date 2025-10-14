@@ -3,12 +3,13 @@
         <nav v-show="isVisible" class="fixed top-4 left-1/2 -translate-x-1/2 bg-white/80 dark:bg-background-dark/80 backdrop-blur-sm
              text-text-primary dark:text-white shadow-lg rounded-full px-8 py-3 z-50 flex items-center
              justify-between w-[90%] max-w-3xl border border-gray-200/30 transition-all duration-500">
-            <NuxtLink to="/"
-                class="font-bold text-lg tracking-wide text-primary hover:text-secondary transition-colors">
-                Le Hai Tien
+            <NuxtLink to="/">
+                <CommonTypingHeading text="Le Hai Tien" size="sm" :cursor="true" :gradient="true" :speed="30"
+                    :startOnMount="true" />
+
             </NuxtLink>
 
-            <div class="flex gap-6">
+            <div class="flex items-center gap-6">
                 <NuxtLink v-for="link in links" :key="link.to" :to="link.to" class="relative group text-sm font-medium">
                     <span class="transition-all duration-300 group-hover:text-primary">{{ link.label }}</span>
                     <!-- underline effect -->
@@ -49,9 +50,7 @@ onUnmounted(() => {
 })
 
 const links = [
-    { to: '/about', label: 'About' },
     { to: '/projects', label: 'Projects' },
-    { to: '/contact', label: 'Contact' },
 ]
 
 

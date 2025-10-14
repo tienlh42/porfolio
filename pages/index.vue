@@ -62,7 +62,7 @@ const scrollTo = (id) => {
 
 const aboutData = {
     intro: {
-        title: "Hi, I'm Le Hai Tien 👋",
+        title: "Hi, I'm Le Hai Tien",
         description:
             "I'm a full-stack developer with a strong focus on building scalable web systems using Node.js and Vue.js. My background combines software engineering and cloud infrastructure.",
         techStack: [

@@ -13,7 +13,7 @@
             </h2>
 
             <!-- Grid of achievements -->
-            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="grid sm:grid-cols-2 lg:grid-   cols-3 gap-8">
                 <div v-for="(item, i) in achievements.items" :key="i" ref="cardsRefs"
                     class="opacity-0 scale-90 group p-6 bg-white/70 dark:bg-gray-800/70 backdrop-blur-md rounded-2xl shadow-lg border border-white/30 dark:border-gray-700/40 hover:-translate-y-2 hover:shadow-xl transform transition-all duration-500 text-left flex flex-col items-center">
                     <!-- Animated icon -->
