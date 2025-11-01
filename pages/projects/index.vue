@@ -28,20 +28,10 @@
 <script setup lang="ts">
 import type { Project } from "~/types/projects";
 
-// type Project = {
-//   id: number | string;
-//   title: string;
-//   desc?: string;
-//   duration?: string;
-//   author?: string;
-//   rating?: number;
-//   tags?: string[];
-//   thumbnail_image?: string;
-//   images?: string[];
-// };
 const { data, pending, error } = await useAsyncData("projects", () =>
-  $fetch("/api/projects")
+  $fetch("/api-v2/projects")
 );
+
 const projects = computed(() => (Array.isArray(data.value) ? data.value : []));
 
 const openPreview = ref(false);
@@ -51,4 +41,8 @@ function onPreview(p: Project) {
   selectedProject.value = p;
   openPreview.value = true;
 }
+
+onMounted(() => {
+  console.log(data);
+});
 </script>
