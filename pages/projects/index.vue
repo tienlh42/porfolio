@@ -29,7 +29,7 @@
 import type { Project } from "~/types/projects";
 
 const { data, pending, error } = await useAsyncData("projects", () =>
-  $fetch("/api-v2/projects")
+  $fetch("/api/v2/projects")
 );
 
 const projects = computed(() => (Array.isArray(data.value) ? data.value : []));

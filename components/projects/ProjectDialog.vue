@@ -17,10 +17,11 @@
         <!-- Panel -->
         <transition name="pop">
           <div
-            class="relative z-10 w-full max-w-2xl overflow-hidden rounded-2xl bg-white shadow-2xl dark:bg-gray-900"
+            class="relative z-10 w-full max-w-2xl overflow-hidden rounded-2xl bg-white shadow-2xl dark:bg-gray-900 max-h-[calc(100vh-4rem)]"
           >
             <!-- Poster -->
             <div class="relative aspect-[16/9] w-full">
+              reload
               <img
                 v-if="project?.thumbnail_image"
                 :src="project.thumbnail_image"
@@ -69,32 +70,36 @@
               </p>
 
               <ClientOnly>
-                <component
-                  v-if="galleryImages.length"
-                  :is="$LightGallery"
-                  :plugins="[$lgZoom, $lgThumbnail]"
-                  :speed="400"
-                  :download="false"
-                  :closable="true"
-                  :thumbnail="true"
-                  class="mt-5"
+                <!-- 👇 Thêm wrapper với fixed height + scroll -->
+                <div
+                  class="max-h-[400px] overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100 dark:scrollbar-thumb-gray-700 dark:scrollbar-track-gray-800"
                 >
-                  <!-- Mỗi ảnh là 1 anchor; data-src là ảnh lớn, img là thumbnail -->
-                  <a
-                    v-for="(src, i) in galleryImages"
-                    :key="i"
-                    :data-src="src"
-                    :data-sub-html="project?.title"
-                    class="inline-block mr-3 mb-3"
+                  <component
+                    v-if="galleryImages.length"
+                    :is="$LightGallery"
+                    :plugins="[$lgZoom, $lgThumbnail]"
+                    :speed="400"
+                    :download="false"
+                    :closable="true"
+                    :thumbnail="true"
+                    class="mt-5"
                   >
-                    <img
-                      :src="src"
-                      alt=""
-                      class="h-24 w-40 rounded-lg object-cover ring-1 ring-black/10 dark:ring-white/10"
-                      loading="lazy"
-                    />
-                  </a>
-                </component>
+                    <a
+                      v-for="(src, i) in galleryImages"
+                      :key="i"
+                      :data-src="src"
+                      :data-sub-html="project?.title"
+                      class="inline-block mr-3 mb-3"
+                    >
+                      <img
+                        :src="src"
+                        alt=""
+                        class="h-24 w-40 rounded-lg object-cover ring-1 ring-black/10 dark:ring-white/10"
+                        loading="lazy"
+                      />
+                    </a>
+                  </component>
+                </div>
               </ClientOnly>
 
               <div
@@ -138,18 +143,6 @@
 import { onMounted, onBeforeUnmount, ref, watch, computed } from "vue";
 import type { Project } from "~/types/projects";
 const { $LightGallery, $lgZoom, $lgThumbnail } = useNuxtApp();
-
-// type Project = {
-//     id: number | string
-//     title: string
-//     desc?: string
-//     duration?: string
-//     author?: string
-//     rating?: number
-//     tags?: string[]
-//     thumbnail_image?: string
-//     images?: string[]
-// }
 
 const props = defineProps<{
   modelValue: boolean;
